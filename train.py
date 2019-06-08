@@ -79,11 +79,11 @@ for epoch in range(EPOCHS):
         optimizer.step()
         # loss.data.item():average of batches
         # total loss = loss.data.item()*batch_size
-        running_loss += loss.data.item() * label.size(0)  
+        running_loss += loss.item() * label.size(0)  
         #prediction and accuracy
-        _, pred = torch.max(out, 1)
+        _, pred = torch.max(out.data, 1)
         num_correct = (pred == label).sum()
-        running_acc += num_correct.data.item()
+        running_acc += num_correct.item()
     # print statistics every epoch
     print('Train Finish {} epoch, Loss: {:.6f}, Acc: {:.6f}'.format(
         epoch + 1,
@@ -111,10 +111,10 @@ with torch.no_grad():
         label = label.to(device)
         out = model(img) 
         loss = criterion(out, label)
-        eval_loss += loss.data.item() * label.size(0)
-        _, pred = torch.max(out, 1)
+        eval_loss += loss.item() * label.size(0)
+        _, pred = torch.max(out.data, 1)
         num_correct = (pred == label).sum()
-        eval_acc += num_correct.data.item()
+        eval_acc += num_correct.item()
 
 print('Test Loss: {:.6f}, Acc: {:.6f}'.format(eval_loss / (len(
     test_dataset)), eval_acc * 1.0 / (len(test_dataset))))
