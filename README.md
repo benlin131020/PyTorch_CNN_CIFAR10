@@ -1,4 +1,4 @@
-# PytTorch_CNN_CIFAR10
+# PyTorch_CNN_CIFAR10
 
 ## github
 https://github.com/benlin131020/PytTorch_CNN_CIFAR10
